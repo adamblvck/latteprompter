@@ -1,6 +1,6 @@
 /**
  * Generates resources/appIcon.png (512×512) — a dark rounded square with the
- * LatePrompter "line-bar over text" mark. Run: npx electron scripts/make-icon.mjs
+ * LattePrompter "line-bar over text" mark. Run: npx electron scripts/make-icon.mjs
  */
 import { app, BrowserWindow } from 'electron'
 import { writeFileSync } from 'fs'

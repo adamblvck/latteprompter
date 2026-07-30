@@ -28,14 +28,17 @@
 .titlebar-brand {
   display: flex;
   align-items: center;
-  gap: var(--sp-2);
+  gap: 5px;
   font-weight: 700;
   font-size: var(--fs-body);
   letter-spacing: 0.02em;
 }
 
-.titlebar-brand .brand-late {
+.titlebar-brand .brand-latte {
   color: var(--text-primary);
+}
+.titlebar-brand .brand-coffee {
+  color: var(--air);
 }
 .titlebar-brand .brand-prompter {
   color: var(--text-secondary);

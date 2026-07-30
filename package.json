@@ -1,20 +1,20 @@
 {
-  "name": "lateprompter",
+  "name": "latteprompter",
   "version": "0.1.0",
-  "description": "LatePrompter — an AI-powered teleprompter that follows your voice.",
+  "description": "LattePrompter — an AI-powered teleprompter that follows your voice.",
   "author": {
     "name": "Blvck Studios",
     "email": "adam@blvckstudios.com",
     "url": "https://github.com/adamblvck"
   },
   "license": "MIT",
-  "homepage": "https://github.com/adamblvck/lateprompter#readme",
+  "homepage": "https://github.com/adamblvck/latteprompter#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adamblvck/lateprompter.git"
+    "url": "git+https://github.com/adamblvck/latteprompter.git"
   },
   "bugs": {
-    "url": "https://github.com/adamblvck/lateprompter/issues"
+    "url": "https://github.com/adamblvck/latteprompter/issues"
   },
   "keywords": [
     "electron",

@@ -1,4 +1,4 @@
-import { Settings } from 'lucide-react'
+import { Coffee, Settings } from 'lucide-react'
 import { useStore } from '@renderer/store/useStore'
 
 const mac = navigator.platform.toLowerCase().includes('mac')
@@ -9,10 +9,9 @@ export default function TitleBar(): React.JSX.Element {
   return (
     <header className={`titlebar${mac ? ' has-traffic-lights' : ''}`}>
       <div className="titlebar-brand">
-        <span className="brand-late">Late</span>
-        <span className="brand-prompter" style={{ marginLeft: -6 }}>
-          Prompter
-        </span>
+        <span className="brand-latte">Latte</span>
+        <Coffee size={15} className="brand-coffee" aria-hidden />
+        <span className="brand-prompter">Prompter</span>
       </div>
       <div className="titlebar-actions">
         <button

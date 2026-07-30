@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-LatePrompter bundles or downloads the following third-party components.
+LattePrompter bundles or downloads the following third-party components.
 
 ## Fonts (bundled, SIL Open Font License 1.1)
 

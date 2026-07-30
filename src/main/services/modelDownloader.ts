@@ -45,7 +45,7 @@ function downloadFile(
     if (state.cancelled) return reject(new Error('cancelled'))
     const part = dest + '.part'
     const have = statSize(part) ?? 0
-    const headers: Record<string, string> = { 'user-agent': 'lateprompter' }
+    const headers: Record<string, string> = { 'user-agent': 'latteprompter' }
     if (have > 0 && have < expectedBytes) headers.range = `bytes=${have}-`
 
     const req = https.get(url, { headers }, (res) => {

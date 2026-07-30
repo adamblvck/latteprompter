@@ -1,5 +1,5 @@
 /**
- * LatePrompter — speech engine host.
+ * LattePrompter — speech engine host.
  * Runs inside an Electron utilityProcess (plain Node context) so inference
  * never touches the UI thread.
  *

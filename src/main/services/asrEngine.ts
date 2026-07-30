@@ -63,7 +63,7 @@ function spawn(presetId: string): void {
   emit.state({ state: 'starting' })
 
   const proc = utilityProcess.fork(join(__dirname, 'asrWorker.js'), [], {
-    serviceName: 'lateprompter-asr-engine'
+    serviceName: 'latteprompter-asr-engine'
   })
   child = proc
 

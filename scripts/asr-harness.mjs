@@ -29,7 +29,7 @@ const PRESET = {
 
 const TEST_TEXT = 'good evening everyone and welcome to the show tonight we talk about the future'
 
-app.setName('lateprompter') // share the real app's userData/models dir
+app.setName('LattePrompter') // share the real app's userData/models dir
 
 function parseWav(path) {
   const buf = readFileSync(path)

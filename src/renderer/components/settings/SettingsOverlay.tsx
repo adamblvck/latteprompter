@@ -189,10 +189,10 @@ export default function SettingsOverlay(): React.JSX.Element | null {
 
         <Section label="About">
           <div className="set-row">
-            <span className="set-label">LatePrompter — an AI teleprompter that follows your voice.</span>
+            <span className="set-label">LattePrompter — an AI teleprompter that follows your voice.</span>
             <button
               className="btn"
-              onClick={() => window.lp.shell.openExternal('https://github.com/adamblvck/lateprompter')}
+              onClick={() => window.lp.shell.openExternal('https://github.com/adamblvck/latteprompter')}
             >
               GitHub
             </button>

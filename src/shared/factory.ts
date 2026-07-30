@@ -46,11 +46,11 @@ export function createCollection(name: string, existingCount: number): Collectio
   }
 }
 
-const WELCOME_BODY = `# Welcome to LatePrompter
+const WELCOME_BODY = `# Welcome to LattePrompter
 
 Write your script here in **markdown**, then press *Prompt* to enter the teleprompter.
 
-In prompter mode, LatePrompter listens to your voice and scrolls the script as you speak. Look away, skip a line, or ad-lib — it finds where you are and keeps the next words in front of your eyes.
+In prompter mode, LattePrompter listens to your voice and scrolls the script as you speak. Look away, skip a line, or ad-lib — it finds where you are and keeps the next words in front of your eyes.
 
 ## A few tips
 
@@ -62,7 +62,7 @@ Press Escape at any time to leave the prompter.
 `
 
 export function createDefaultStore(): StoreFile {
-  const welcome = createScript('Welcome to LatePrompter')
+  const welcome = createScript('Welcome to LattePrompter')
   welcome.body = WELCOME_BODY
   return {
     schemaVersion: SCHEMA_VERSION,

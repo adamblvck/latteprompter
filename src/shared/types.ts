@@ -1,4 +1,4 @@
-/** LatePrompter data model. Plain JSON, stable ids — one store.json, atomic writes. */
+/** LattePrompter data model. Plain JSON, stable ids — one store.json, atomic writes. */
 
 export type ThemeMode = 'dark' | 'light'
 export type ViewMode = 'grid' | 'list'

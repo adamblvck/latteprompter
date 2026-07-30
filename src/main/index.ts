@@ -1,14 +1,15 @@
 import { app, session } from 'electron'
 import { join } from 'path'
-import { createWindow } from './window'
+import { createWindow, getWindow } from './window'
 import { registerIpc } from './ipc'
 import { loadStore } from './services/storeService'
 import { killAsr } from './services/asrEngine'
 
 // One consistent userData dir (dev, packaged, and direct `electron out/...` runs).
-app.setName('LatePrompter')
+app.setName('LattePrompter')
 
-const gotLock = app.requestSingleInstanceLock()
+// Capture runs are ephemeral — they must not be blocked by (or steal) the lock.
+const gotLock = process.env['LP_CAPTURE'] ? true : app.requestSingleInstanceLock()
 if (!gotLock) {
   app.quit()
 } else {
@@ -64,7 +65,12 @@ if (!gotLock) {
   })
 
   app.on('second-instance', () => {
-    // focus the existing window
+    const win = getWindow()
+    if (win) {
+      if (win.isMinimized()) win.restore()
+      win.show()
+      win.focus()
+    }
   })
 
   app.on('before-quit', () => {

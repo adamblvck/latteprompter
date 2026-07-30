@@ -1,9 +1,9 @@
-# LatePrompter
+# LattePrompter
 
 **A teleprompter that follows your voice.**
 
 Write your script in markdown, organize scripts into collections, then step into
-prompter mode: LatePrompter transcribes your speech on-device in real time and
+prompter mode: LattePrompter transcribes your speech on-device in real time and
 scrolls the script as you speak — highlighting the word you're on, surviving
 skipped lines, ad-libs, and pauses. Look away, come back, and it finds you.
 
@@ -28,7 +28,7 @@ Everything runs locally. Audio never leaves your machine.
 ## Install
 
 Grab the latest build for macOS, Windows, or Linux from
-[Releases](https://github.com/adamblvck/lateprompter/releases).
+[Releases](https://github.com/adamblvck/latteprompter/releases).
 
 ## Development
 
