@@ -1,0 +1,57 @@
+/* Design tokens — shared visual language with QQuill (Blvck Studios house style). */
+:root {
+  /* surfaces */
+  --bg: #12151a;
+  --surface: #1f252b;
+  --surface-2: #252c34;
+  --card-border: #1c2126;
+  --group-card: #1a1f24;
+  --water-border: #41505e;
+
+  /* text */
+  --text-primary: #fff3e3;
+  --text-secondary: #8ca6bd;
+  --text-hint: #556573;
+
+  /* elements (collection accents) */
+  --air: #fcbd3f;
+  --fire: #fa1928;
+  --water: #006fbe;
+  --earth: #0fb500;
+  --akasha: #5a15cc;
+
+  /* accents / states */
+  --success: #3a9459;
+  --warning: #fcbd3f;
+  --danger: #fa1928;
+
+  /* shape */
+  --radius-card: 18px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-pop: 0 12px 40px rgba(0, 0, 0, 0.5);
+
+  /* spacing rhythm */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+
+  /* typography */
+  --font-body: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Open Sans', system-ui, sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, 'Space Mono', Menlo, monospace;
+
+  --fs-title: 18px;
+  --fs-body: 14px;
+  --fs-small: 12px;
+  --fs-tiny: 10px;
+
+  /* prompter */
+  --prompter-bg: #000000;
+  --prompter-dim: 0.32;
+  --prompter-upcoming: 0.92;
+}

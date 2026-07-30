@@ -1,0 +1,64 @@
+appId: com.blvckstudios.lateprompter
+productName: LatePrompter
+copyright: Copyright © 2026 Blvck Studios
+
+artifactName: ${productName}-${version}-${os}-${arch}.${ext}
+
+directories:
+  buildResources: resources
+  output: release
+
+files:
+  - out/**/*
+  - package.json
+
+asar: true
+# Native addons cannot load from inside asar; sherpa-onnx ships per-platform
+# optionalDependencies (sherpa-onnx-darwin-arm64 etc.) with .node + dylibs.
+asarUnpack:
+  - '**/*.node'
+  - node_modules/sherpa-onnx-node/**
+  - node_modules/sherpa-onnx-darwin-arm64/**
+  - node_modules/sherpa-onnx-darwin-x64/**
+  - node_modules/sherpa-onnx-linux-x64/**
+  - node_modules/sherpa-onnx-linux-arm64/**
+  - node_modules/sherpa-onnx-win-x64/**
+
+publish:
+  provider: github
+  owner: adamblvck
+  repo: lateprompter
+
+mac:
+  category: public.app-category.video
+  icon: resources/appIcon.png
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  extendInfo:
+    NSMicrophoneUsageDescription: >-
+      LatePrompter listens to your voice to scroll the script as you speak.
+      Audio never leaves your machine.
+  target:
+    - target: dmg
+      arch: [arm64, x64]
+    - target: zip
+      arch: [arm64, x64]
+
+win:
+  icon: resources/appIcon.png
+  target:
+    - nsis
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+
+linux:
+  icon: resources/appIcon.png
+  category: AudioVideo
+  maintainer: Blvck Studios <adam@blvckstudios.com>
+  target:
+    - AppImage
