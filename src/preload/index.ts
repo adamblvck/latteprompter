@@ -41,6 +41,7 @@ const api: LPApi = {
     start: (presetId) => ipcRenderer.invoke(IPC.asr.start, { presetId }),
     stop: () => ipcRenderer.invoke(IPC.asr.stop),
     status: (presetId) => ipcRenderer.invoke(IPC.asr.status, { presetId }),
+    statusAll: () => ipcRenderer.invoke(IPC.asr.statusAll),
     feed: (pcm, sampleRate) => ipcRenderer.send(IPC.asr.feed, { pcm, sampleRate }),
     downloadModel: (presetId) => ipcRenderer.invoke(IPC.asr.downloadModel, { presetId }),
     cancelDownload: (presetId) => ipcRenderer.invoke(IPC.asr.cancelDownload, { presetId }),

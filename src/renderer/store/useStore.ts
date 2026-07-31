@@ -10,6 +10,7 @@ import type {
   WindowBounds
 } from '@shared/types'
 import { createCollection, createScript } from '@shared/factory'
+import { DEFAULT_PRESET_ID } from '@shared/asr-models'
 import { nowISO, zid } from '@shared/id'
 
 export interface ContextMenuItem {
@@ -48,6 +49,12 @@ export interface AppState {
   contextMenu: ContextMenuState | null
   toast: ToastState | null
   renamingCollectionId: string | null
+
+  // speech models (transient; refreshed from disk via IPC)
+  modelStatus: Record<string, boolean>
+  modelBannerDismissed: boolean
+  refreshModelStatus: () => Promise<void>
+  dismissModelBanner: () => void
 
   // lifecycle
   load: () => Promise<void>
@@ -106,11 +113,33 @@ export const useStore = create<AppState>()(
       contextMenu: null,
       toast: null,
       renamingCollectionId: null,
+      modelStatus: {},
+      modelBannerDismissed: false,
+
+      refreshModelStatus: async () => {
+        const statuses = await window.lp.asr.statusAll()
+        set((s) => {
+          s.modelStatus = Object.fromEntries(statuses.map((st) => [st.presetId, st.cached]))
+        })
+      },
+
+      dismissModelBanner: () => set((s) => void (s.modelBannerDismissed = true)),
 
       load: async () => {
         const store = await window.lp.store.load()
+        const statuses = await window.lp.asr.statusAll().catch(() => [])
+        const cachedIds = statuses.filter((st) => st.cached).map((st) => st.presetId)
         set((s) => {
           s.store = store
+          s.modelStatus = Object.fromEntries(statuses.map((st) => [st.presetId, st.cached]))
+          // A model already on disk but nothing selected (fresh store, or the
+          // store predates the download): adopt it so Settings and the
+          // prompter agree with reality. Prefer the recommended default.
+          if (s.store.settings.asr.modelId === null && cachedIds.length > 0) {
+            s.store.settings.asr.modelId = cachedIds.includes(DEFAULT_PRESET_ID)
+              ? DEFAULT_PRESET_ID
+              : cachedIds[0]
+          }
           s.loaded = true
         })
       },

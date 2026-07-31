@@ -30,6 +30,7 @@ export const IPC = {
     start: 'asr:start',
     stop: 'asr:stop',
     status: 'asr:status',
+    statusAll: 'asr:statusAll',
     feed: 'asr:feed',
     downloadModel: 'asr:downloadModel',
     cancelDownload: 'asr:cancelDownload',
@@ -88,6 +89,11 @@ export interface AsrStatusResult {
   totalBytes: number
 }
 
+export interface AsrPresetStatus {
+  presetId: string
+  cached: boolean
+}
+
 /** Typed facade on `window.lp`. */
 export interface LPApi {
   store: {
@@ -113,6 +119,8 @@ export interface LPApi {
     start(presetId: string): Promise<{ cached: boolean }>
     stop(): Promise<{ ok: boolean }>
     status(presetId: string): Promise<AsrStatusResult>
+    /** Cached-on-disk state for every preset in one roundtrip. */
+    statusAll(): Promise<AsrPresetStatus[]>
     /** Fire-and-forget PCM feed (mono Float32, transferred as ArrayBuffer). */
     feed(pcm: ArrayBuffer, sampleRate: number): void
     downloadModel(presetId: string): Promise<{ started: boolean }>

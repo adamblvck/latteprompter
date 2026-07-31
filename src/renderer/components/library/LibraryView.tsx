@@ -2,6 +2,7 @@ import { LayoutGrid, List, Plus } from 'lucide-react'
 import { useStore } from '@renderer/store/useStore'
 import ScriptCard from './ScriptCard'
 import EmptyState from './EmptyState'
+import ModelOnboarding from './ModelOnboarding'
 
 export default function LibraryView(): React.JSX.Element {
   const store = useStore((s) => s.store)
@@ -47,6 +48,8 @@ export default function LibraryView(): React.JSX.Element {
           New Script
         </button>
       </div>
+
+      <ModelOnboarding />
 
       {scripts.length === 0 ? (
         <EmptyState

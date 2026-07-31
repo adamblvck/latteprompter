@@ -1,10 +1,11 @@
 import { ipcMain } from 'electron'
 import { join } from 'path'
 import { IPC } from '@shared/ipc'
-import { presetById } from '@shared/asr-models'
+import { ASR_PRESETS, presetById } from '@shared/asr-models'
 import { getWindow } from '../window'
 import { asrModelsDir } from '../services/paths'
 import {
+  asrCached,
   asrStatus,
   feedAsr,
   killAsr,
@@ -39,6 +40,9 @@ export function registerAsrIpc(): void {
   })
   ipcMain.handle(IPC.asr.status, async (_e, { presetId }: { presetId: string }) =>
     asrStatus(presetId)
+  )
+  ipcMain.handle(IPC.asr.statusAll, async () =>
+    ASR_PRESETS.map((p) => ({ presetId: p.id, cached: asrCached(p.id) }))
   )
 
   // Fire-and-forget PCM feed — send/on, not invoke, to skip promise overhead.

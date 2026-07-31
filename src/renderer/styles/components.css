@@ -333,6 +333,67 @@
   gap: var(--sp-2);
 }
 
+.onboard-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+  margin-bottom: var(--sp-4);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--water) 14%, var(--surface)),
+    var(--surface) 65%
+  );
+  border: 1px solid var(--water-border);
+  border-radius: var(--radius-card);
+  animation: fadeIn 0.18s ease;
+}
+.onboard-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--water) 30%, var(--surface));
+  color: var(--text-primary);
+}
+.onboard-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.onboard-title {
+  font-weight: 700;
+  font-size: var(--fs-body);
+}
+.onboard-text {
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  line-height: 1.55;
+  max-width: 62ch;
+}
+.onboard-text strong {
+  color: var(--text-primary);
+}
+.onboard-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding-right: var(--sp-5);
+  flex-shrink: 0;
+  align-self: center;
+}
+.onboard-close {
+  position: absolute;
+  top: var(--sp-2);
+  right: var(--sp-2);
+}
+
 .empty-state {
   flex: 1;
   display: flex;

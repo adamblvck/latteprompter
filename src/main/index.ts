@@ -8,6 +8,12 @@ import { killAsr } from './services/asrEngine'
 // One consistent userData dir (dev, packaged, and direct `electron out/...` runs).
 app.setName('LattePrompter')
 
+// Dev affordance alongside LP_CAPTURE/LP_SCENE: point userData at a scratch
+// dir to exercise fresh-install states without touching real data.
+if (process.env['LP_USERDATA']) {
+  app.setPath('userData', process.env['LP_USERDATA'])
+}
+
 // Capture runs are ephemeral — they must not be blocked by (or steal) the lock.
 const gotLock = process.env['LP_CAPTURE'] ? true : app.requestSingleInstanceLock()
 if (!gotLock) {

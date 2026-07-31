@@ -10,55 +10,34 @@ function mb(bytes: number): string {
 
 export default function AsrModelSection(): React.JSX.Element {
   const modelId = useStore((s) => s.store?.settings.asr.modelId)
+  const modelStatus = useStore((s) => s.modelStatus)
   const setAsrModel = useStore((s) => s.setAsrModel)
+  const refreshModelStatus = useStore((s) => s.refreshModelStatus)
   const showToast = useStore((s) => s.showToast)
 
-  const [cached, setCached] = useState<Record<string, boolean>>({})
   const [progress, setProgress] = useState<Record<string, AsrModelProgressEvent>>({})
 
-  const refresh = async (): Promise<void> => {
-    const entries: Record<string, boolean> = {}
-    for (const preset of ASR_PRESETS) {
-      const status = await window.lp.asr.status(preset.id)
-      entries[preset.id] = status.cached
-    }
-    setCached(entries)
-  }
-
   useEffect(() => {
-    refresh()
+    refreshModelStatus()
+    // Completion/failure toasts and cached-map refresh happen app-wide in
+    // App.tsx; this listener only drives the per-row progress bars.
     const unsub = window.lp.asr.onModelProgress((p) => {
-      setProgress((prev) => ({ ...prev, [p.presetId]: p }))
-      if (p.done) {
-        refresh()
-        setProgress((prev) => {
+      setProgress((prev) => {
+        if (p.done || p.error) {
           const next = { ...prev }
           delete next[p.presetId]
           return next
-        })
-        useStore.getState().showToast('Speech model ready', 'info')
-      } else if (p.error && p.error !== 'cancelled') {
-        useStore.getState().showToast(`Download failed: ${p.error}`, 'error')
-        setProgress((prev) => {
-          const next = { ...prev }
-          delete next[p.presetId]
-          return next
-        })
-      } else if (p.error === 'cancelled') {
-        setProgress((prev) => {
-          const next = { ...prev }
-          delete next[p.presetId]
-          return next
-        })
-      }
+        }
+        return { ...prev, [p.presetId]: p }
+      })
     })
     return unsub
-  }, [])
+  }, [refreshModelStatus])
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-2)' }}>
       {ASR_PRESETS.map((preset) => {
-        const isCached = cached[preset.id] ?? false
+        const isCached = modelStatus[preset.id] ?? false
         const p = progress[preset.id]
         const selected = (modelId ?? DEFAULT_PRESET_ID) === preset.id
         return (
@@ -82,7 +61,7 @@ export default function AsrModelSection(): React.JSX.Element {
                     title="Delete model from disk"
                     onClick={async () => {
                       await window.lp.asr.deleteModel(preset.id)
-                      refresh()
+                      refreshModelStatus()
                       showToast('Model deleted', 'info')
                     }}
                   >
