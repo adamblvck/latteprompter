@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LattePrompter: the teleprompter that follows your voice</title>
+  <meta name="description" content="A free, open-source teleprompter for macOS that listens while you talk and scrolls to where you are. Speech recognition runs entirely on your Mac." />
+  <meta name="theme-color" content="#0d1014" />
+  <link rel="canonical" href="https://latteprompter.netlify.app/" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LattePrompter: the teleprompter that follows your voice" />
+  <meta property="og:description" content="Speak at your own pace. LattePrompter listens on-device and keeps the next line in front of your eyes. Free and open source, for macOS." />
+  <meta property="og:url" content="https://latteprompter.netlify.app/" />
+  <meta property="og:image" content="https://latteprompter.netlify.app/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="wordmark" href="#top" aria-label="LattePrompter">
+      <svg class="cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+      <span>Latte<em>Prompter</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="https://github.com/adamblvck/latteprompter" class="nav-ghost" rel="noopener">GitHub</a>
+      <a href="#download" class="btn btn-accent btn-sm">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============================= hero ============================= -->
+  <section class="hero">
+    <div class="container">
+      <p class="kicker reveal">Voice-following teleprompter for macOS</p>
+      <h1 class="reveal d1">Speak.<br />It follows.</h1>
+      <p class="sub reveal d2">
+        LattePrompter listens while you talk and scrolls the script to where you are.
+        Wander off for a moment, come back, and the next line is waiting at eye level.
+      </p>
+      <div class="cta-row reveal d3">
+        <a class="btn btn-accent" href="https://github.com/adamblvck/latteprompter/releases/download/v0.1.0/LattePrompter-0.1.0-mac-arm64.dmg">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          Download for macOS
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/adamblvck/latteprompter" rel="noopener">View the source</a>
+      </div>
+      <p class="proof reveal d4">Free &amp; open source (MIT) · Speech stays on your Mac · Apple Silicon &amp; Intel</p>
+
+      <!-- live demo: this is the product, re-enacted -->
+      <div class="demo-frame reveal d5" id="demo" aria-label="Animated demonstration of the prompter following a voice">
+        <div class="demo-chrome">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="demo-title">rehearsal.md</span>
+          <span class="chip" id="demo-chip"><span class="chip-pulse"></span><span id="demo-chip-label">listening</span></span>
+          <span class="badge">follow</span>
+        </div>
+        <div class="demo-stage">
+          <div class="demo-scroll" id="demo-scroll"></div>
+          <div class="demo-fade top"></div>
+          <div class="demo-fade bottom"></div>
+        </div>
+        <div class="demo-meter" id="demo-meter" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== how it works ========================== -->
+  <section class="section" id="how">
+    <div class="container">
+      <h2 class="reveal">Three moves, then you're rolling</h2>
+      <div class="steps">
+        <div class="step reveal">
+          <span class="step-n">1</span>
+          <h3>Write</h3>
+          <p>Scripts are markdown. Headings, bold and lists come through on the glass.</p>
+        </div>
+        <div class="step reveal d1">
+          <span class="step-n">2</span>
+          <h3>Prompt</h3>
+          <p>One keystroke goes fullscreen. Flip on mirror mode if a beam-splitter sits between you and the lens.</p>
+        </div>
+        <div class="step reveal d2">
+          <span class="step-n">3</span>
+          <h3>Speak</h3>
+          <p>A speech model on your Mac hears you and moves the text to match, word by word.</p>
+        </div>
+      </div>
+      <figure class="shot-wide reveal">
+        <img src="/assets/shot-prompter.png" alt="LattePrompter in follow mode: large script text with the current word highlighted in amber" loading="lazy" />
+        <figcaption>Follow mode. The word you're on glows; the reading line stays put.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========================== it waits for you ========================== -->
+  <section class="section" id="waits">
+    <div class="container narrow">
+      <h2 class="reveal">It waits for you</h2>
+      <p class="body-lg reveal d1">
+        Classic teleprompters make you match a motor. Read too slowly and the text runs away;
+        too fast and you're squinting at the bottom edge. LattePrompter matches you instead:
+        your words are transcribed live and aligned against the script, so a skipped sentence
+        or a two-minute tangent never loses your place. The moment you're back on text, the
+        scroll picks you up mid-line.
+      </p>
+    </div>
+    <div class="container">
+      <div class="shot-pair">
+        <figure class="shot reveal">
+          <img src="/assets/shot-library.png" alt="The script library with collections and a welcome script" loading="lazy" />
+          <figcaption>A small library for your scripts.</figcaption>
+        </figure>
+        <figure class="shot reveal d1">
+          <img src="/assets/shot-settings.png" alt="Settings showing the FastConformer English speech model marked Ready and Selected" loading="lazy" />
+          <figcaption>Pick a model once. It's detected, selected, and kept on disk.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ privacy ============================ -->
+  <section class="section" id="privacy">
+    <div class="container narrow">
+      <h2 class="reveal">Nothing to send, nowhere to send it</h2>
+      <p class="body-lg reveal d1">
+        Recognition runs on your Mac, using an open speech model you download once (about 460&nbsp;MB).
+        Audio never leaves the machine. There's no account and no telemetry, and the source is on
+        GitHub if you'd rather check than trust.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ features ============================ -->
+  <section class="section" id="features">
+    <div class="container">
+      <h2 class="reveal">The details that matter on camera</h2>
+      <div class="grid">
+        <div class="card reveal"><h3>Three scroll modes</h3><p>Follow your voice, run at a constant pace, or drive it yourself with the arrow keys.</p></div>
+        <div class="card reveal d1"><h3>Mirror mode</h3><p>One toggle flips the text for beam-splitter glass.</p></div>
+        <div class="card reveal d2"><h3>Markdown scripts</h3><p>Write anywhere and paste it in. Formatting survives.</p></div>
+        <div class="card reveal"><h3>Fonts built for distance</h3><p>Atkinson Hyperlegible, Literata, OpenDyslexic or your system font, up to 120&nbsp;px.</p></div>
+        <div class="card reveal d1"><h3>Say "nineteen eighty-four"</h3><p>Numbers match their spoken form, so 1984 in the script hears you fine.</p></div>
+        <div class="card reveal d2"><h3>80&nbsp;ms word latency</h3><p>A streaming FastConformer model emits words while you're still saying the sentence.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ download ============================ -->
+  <section class="section" id="download">
+    <div class="container narrow center">
+      <h2 class="reveal">Put it on your Mac</h2>
+      <p class="version reveal d1">Version 0.1.0 · MIT licensed</p>
+      <div class="cta-row center reveal d2">
+        <a class="btn btn-accent btn-lg" href="https://github.com/adamblvck/latteprompter/releases/download/v0.1.0/LattePrompter-0.1.0-mac-arm64.dmg">Apple Silicon · 110 MB</a>
+        <a class="btn btn-ghost btn-lg" href="https://github.com/adamblvck/latteprompter/releases/download/v0.1.0/LattePrompter-0.1.0-mac-x64.dmg">Intel · 117 MB</a>
+      </div>
+      <p class="fine reveal d3">
+        The build is signed but not yet notarized, so macOS warns on first launch:
+        right-click the app and choose <strong>Open</strong>.<br />
+        On first open, LattePrompter offers the recommended speech model as a one-click download.
+        All builds are on the <a href="https://github.com/adamblvck/latteprompter/releases" rel="noopener">releases page</a>.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>Built by <a href="https://blvckstudios.com" rel="noopener">Blvck Studios</a> · © 2026</span>
+    <a href="https://github.com/adamblvck/latteprompter" rel="noopener">GitHub</a>
+  </div>
+</footer>
+
+<script src="/main.js" defer></script>
+</body>
+</html>
